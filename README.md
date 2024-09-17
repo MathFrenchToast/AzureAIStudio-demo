@@ -21,7 +21,13 @@ Add two env vars, for your subscription and tenant:
 (reminder: $env:VAR=value in PS)
 
 You should be able to run:
+```
+terraform init -upgrade
 terraform plan -out main.tfplan
+```
+
+And be able to use this ressources in a python chat with RAG like described in this tutorial skipping step 1: https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-create-resources.  
+I plan to add my own simplified code later on.
 
 # TODO
 - [ ] create simple python rag code
