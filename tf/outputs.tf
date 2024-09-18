@@ -6,8 +6,8 @@ output "workspace_name" {
     value = azapi_resource.project.id
 }
 
-output "endpoint" {
-  value = azurerm_cognitive_account.AIServicesResource.endpoint
+output "aiservice_endpoint" {
+  value = jsondecode(azapi_resource.AIServices.output).properties.endpoint
 }
 
 output "search_endpoint" {

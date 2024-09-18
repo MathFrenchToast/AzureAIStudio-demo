@@ -38,20 +38,24 @@ Add two env vars, for your subscription and tenant:
 (reminder: $env:VAR=value in PS)
 
 You should be able to run:
+
 ```
 terraform init -upgrade
 terraform plan -out main.tfplan
+terraform apply "main.tfplan"
 ```
 
-And be able to use this ressources in a python chat with RAG like described in this tutorial skipping step 1: https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-create-resources.  
+And then to be able to use this ressources in a python chat with RAG like described in this tutorial skipping step 1: https://learn.microsoft.com/en-us/azure/ai-studio/tutorials/copilot-sdk-create-resources.  
 I plan to add my own simplified code later on.
 
-# TODO
+## troubleshooting
+
+## TODO
 - [x] add a diagram
 - [ ] create simple python rag code instead of default tutorial 
 - [ ] add TFstate management 
 
-# ref
+## ref
 Note: documentation is kind of outdated on official azure website, this repo try to be as up-to-date as possible as for September 2024. Anyway here are some starting point that I have adapted:
 - [Azure RM 4.2](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [AZ AI Studio - create a hub with TF](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-hub-terraform?tabs=azure-cli)

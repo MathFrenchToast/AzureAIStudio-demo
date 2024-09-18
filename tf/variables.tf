@@ -19,7 +19,7 @@ variable "prefix" {
 variable "aisrv_sku" {
     type        = string
     description = "The sku name of the Azure Analysis Services server to create. Choose from: F0, F1, S0, S, S1, S2, S3, S4, S5, S6, P0, P1, P2, E0, DC0. Some skus are region specific. See https://docs.microsoft.com/en-us/azure/analysis-services/analysis-services-overview#availability-by-region"
-    default     = "F0" # free-tiers
+    default     = "S0" # F0 is the free-tiers but not available
 }
 
 resource "random_string" "suffix" {  

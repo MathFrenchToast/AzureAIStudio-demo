@@ -18,7 +18,7 @@ resource "azurerm_search_service" "AISearch" {
 }
 
 resource "azapi_resource" "AISearchConnection" {
-  type      = "Microsoft.MachineLearningServices/workspaces/connections@2024-07-01"
+  type      = "Microsoft.MachineLearningServices/workspaces/connections@2024-07-01-preview"
   name      = "my-ai-search-services"
   parent_id = azapi_resource.project.id
 
