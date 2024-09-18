@@ -2,14 +2,31 @@
 
 ## disclaimer
 
-- I try to set all the config to minimal values or even to free tiers when possible, but cost may occurs (that's how cloud works). destroy all the ressources as soon as you are done with them.
-- This is a WIP (see todo section)
+I try to set all the config to minimal values or even to free tiers when possible, but cost may occurs (that's how cloud works). destroy all the ressources as soon as you are done with them.  
+This is a WIP (see todo section)
+
+## what is created
+```mermaid
+erDiagram
+    HUB 1--0+ PROJECT: contains
+    HUB 1--1 AI_SERVICE: connect
+    PROJECT 1--0+ AI_SEARCH: connect
+    AI_SERVICE 1--0+ USER: is_allowed    
+    AI_SEARCH 1--0+ USER: is_allowed
+    USER {
+        role ai_service "Cognitive_Service_OpenAI_User"
+        role ai_search "Search_Index_Data_Contributor"
+        role ai_search "Search_Service_Contributor"
+    }
+```
 
 ## running
-you need a n azure account
+you need an azure account
 in Powershell or in bash set your environement with:
 - Azure Cli
 - Terraform
+
+note: I use a fairly new version of azurerm (4.2). Azure documentation ytd use 3.0, this may leads to incompatibility.
 
 Connect to your subscription with `az login`.  
 get tenant and subscription info with `az account show`.
@@ -30,11 +47,12 @@ And be able to use this ressources in a python chat with RAG like described in t
 I plan to add my own simplified code later on.
 
 # TODO
-- [ ] create simple python rag code
+- [x] add a diagram
+- [ ] create simple python rag code instead of default tutorial 
 - [ ] add TFstate management 
 
 # ref
-Note: documentation is kind of outdated on official azure this repo try to be as up-to-date as possible as for September 2024. Anyway here are some starting point that I have adapted:
+Note: documentation is kind of outdated on official azure website, this repo try to be as up-to-date as possible as for September 2024. Anyway here are some starting point that I have adapted:
 - [Azure RM 4.2](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs)
 - [AZ AI Studio - create a hub with TF](https://learn.microsoft.com/en-us/azure/ai-studio/how-to/create-hub-terraform?tabs=azure-cli)
 - [AZ AI Services](https://learn.microsoft.com/en-us/azure/ai-services/create-account-terraform?tabs=azure-cli)
