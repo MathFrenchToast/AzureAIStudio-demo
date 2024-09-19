@@ -10,11 +10,13 @@ resource "azurerm_search_service" "AISearch" {
   name                = random_string.azurerm_search_service_name.result
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
-  sku                 = var.sku
-  replica_count       = var.replica_count
-  partition_count     = var.partition_count
+  sku                 = var.aisearch_sku
+  replica_count       = var.aisearch_replica_count
+  partition_count     = var.aisearch_partition_count
 
-  local_authentication_enabled = true # enable both keys and endpoints, for az cli and deployment 
+  # enable both keys and endpoints, for az cli and deployment 
+  local_authentication_enabled = true   
+  authentication_failure_mode = "http403"
 }
 
 resource "azapi_resource" "AISearchConnection" {

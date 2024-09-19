@@ -40,3 +40,9 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+
+# Ignore microsoft tute code
+rag-tutorial/
+
+# Ignore python env
+.venv/
