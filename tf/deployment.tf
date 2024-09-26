@@ -1,11 +1,10 @@
 resource "azurerm_cognitive_deployment" "model" {
-  name                 = "gpt-4o"
+  name                 = "gpt-4o-mini"  # reusing same name as model to ease the migration from openai to azure openai
   cognitive_account_id = azapi_resource.AIServices.id
   version_upgrade_option = "OnceNewDefaultVersionAvailable"
   model {
     format  = "OpenAI"
     name    = "gpt-4o-mini"
-    # version = "0125-Preview"
   }
 
   sku {
@@ -19,7 +18,7 @@ resource "azurerm_cognitive_deployment" "model" {
 }
 
 resource "azurerm_cognitive_deployment" "model-embedding" {
-  name                 = "ada-002"
+  name                 = "text-embedding-ada-002"
   cognitive_account_id = azapi_resource.AIServices.id
   version_upgrade_option = "OnceNewDefaultVersionAvailable"
   model {

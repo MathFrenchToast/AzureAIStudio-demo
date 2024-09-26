@@ -2,7 +2,8 @@
 
 ## disclaimer
 
-I try to set all the config to minimal values or even to free tiers when possible, but cost may occurs (that's how cloud works). destroy all the ressources as soon as you are done with them.  
+I try to set all the config to minimal values or even to free tiers when possible, but cost may occurs (that's how cloud works).  
+Destroy all the ressources as soon as you are done with them.  
 This is a WIP (see todo section)
 
 ## what is created
@@ -52,6 +53,7 @@ I plan to add my own simplified code later on.
 
 ## TODO
 - [x] add a diagram
+- [x] create code to demonstrate how to migrate from openai to azure openai
 - [ ] create simple python rag code instead of default tutorial 
 - [ ] add TFstate management 
 
