@@ -1,7 +1,7 @@
 // Azure AI Hub
 resource "azapi_resource" "hub" {
   type = "Microsoft.MachineLearningServices/workspaces@2024-07-01-preview"
-  name = "${random_pet.rg_name.id}-aih"
+  name = "my-ai-hub${random_string.suffix.result}"
   location = azurerm_resource_group.rg.location
   parent_id = azurerm_resource_group.rg.id
 

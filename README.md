@@ -51,6 +51,11 @@ I plan to add my own simplified code later on.
 
 ## troubleshooting
 
+As for september 2024, there is a IAM error on the MSI created for the project. 
+It can be overcomed by adding 2 roles, see permisions.tf commented code at the bottom.
+This has been fixed since then.
+
+
 ## TODO
 - [x] add a diagram
 - [x] create code to demonstrate how to migrate from openai to azure openai

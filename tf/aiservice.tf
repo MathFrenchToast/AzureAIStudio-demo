@@ -3,7 +3,7 @@
 
 resource "azapi_resource" "AIServices"{
   type = "Microsoft.CognitiveServices/accounts@2023-10-01-preview"
-  name = "AIServices${random_string.suffix.result}"
+  name = "aiservices${random_string.suffix.result}"
   location = azurerm_resource_group.rg.location
   parent_id = azurerm_resource_group.rg.id
 
@@ -12,7 +12,7 @@ resource "azapi_resource" "AIServices"{
   }
 
   body = jsonencode({
-    name = "AIServices${random_string.suffix.result}"
+    name = "aiservices${random_string.suffix.result}"
     properties = {
       //restore = true
       customSubDomainName = "${random_string.suffix.result}domain"

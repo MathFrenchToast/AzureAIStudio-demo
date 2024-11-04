@@ -18,3 +18,20 @@ resource "azurerm_role_assignment" "identity_access_to_ai_search" {
 
   role_definition_name = "Search Service Contributor"
 }
+
+# issue see: https://learn.microsoft.com/en-us/answers/questions/2073352/issue-with-api-endpoints-error-when-managing-deplo
+# should no longer be needed, but leaving here for reference
+/*
+# Assign the role to the workspace MSI
+resource "azurerm_role_assignment" "role_assignment" {
+  scope                = azapi_resource.project.id
+  role_definition_name = "Contributor"
+  principal_id         = azapi_resource.project.identity.0.principal_id
+}
+
+# Assign the role to the workspace MSI
+resource "azurerm_role_assignment" "role_assignment" {
+  scope                = azapi_resource.project.id
+  role_definition_name = "Azure AI Administrator"
+  principal_id         = azapi_resource.project.identity.0.principal_id
+}*/
