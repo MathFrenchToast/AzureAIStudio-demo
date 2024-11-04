@@ -24,7 +24,7 @@ resource "azapi_resource" "AISearchConnection" {
   name      = "my-ai-search-services"
   parent_id = azapi_resource.project.id
 
-  body = jsonencode({
+  body = {
     properties = {
       category      = "CognitiveSearch",  # value inherited from older name of 'ai search'
       target        = "https://${azurerm_search_service.AISearch.name}.search.windows.net"
@@ -35,6 +35,6 @@ resource "azapi_resource" "AISearchConnection" {
         ResourceId = azurerm_search_service.AISearch.id
       }
     }
-  })
+  }
   response_export_values = ["*"]
 }

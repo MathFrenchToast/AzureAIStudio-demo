@@ -9,7 +9,7 @@ resource "azapi_resource" "hub" {
     type = "SystemAssigned"
   }
 
-  body = jsonencode({
+  body = {
     properties = {
       description = "This is my Azure AI hub"
       friendlyName = "My Hub"
@@ -33,7 +33,7 @@ resource "azapi_resource" "hub" {
       
     }
     kind = "hub"
-  })
+  }
 }
 
 // Azure AI Project
@@ -47,12 +47,12 @@ resource "azapi_resource" "project" {
     type = "SystemAssigned"
   }
 
-  body = jsonencode({
+  body = {
     properties = {
       description = "This is my Azure AI PROJECT"
       friendlyName = "My_Project" # no space allowed
       hubResourceId = azapi_resource.hub.id
     }
     kind = "project"
-  })
+  }
 }

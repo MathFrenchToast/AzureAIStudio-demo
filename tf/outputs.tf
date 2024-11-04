@@ -7,7 +7,7 @@ output "workspace_name" {
 }
 
 output "aiservice_endpoint" {
-  value = jsondecode(azapi_resource.AIServices.output).properties.endpoint
+  value = azapi_resource.AIServices.output.properties.endpoint
 }
 
 output "search_endpoint" {

@@ -11,7 +11,7 @@ resource "azapi_resource" "AIServices"{
     type = "SystemAssigned"
   }
 
-  body = jsonencode({
+  body = {
     name = "aiservices${random_string.suffix.result}"
     properties = {
       //restore = true
@@ -24,7 +24,7 @@ resource "azapi_resource" "AIServices"{
     sku = {
         name = var.aisrv_sku
     }
-    })
+    }
 
   response_export_values = ["*"]
 }
@@ -51,10 +51,10 @@ resource "azapi_resource" "AIServicesConnection" {
   name = "Default_AIServices${random_string.suffix.result}"
   parent_id = azapi_resource.hub.id
 
-  body = jsonencode({
+  body = {
       properties = {
         category = "AIServices",
-        target = jsondecode(azapi_resource.AIServices.output).properties.endpoint,
+        target = azapi_resource.AIServices.output.properties.endpoint,
         authType = "AAD",
         isSharedToAll = true,
         metadata = {
@@ -62,7 +62,7 @@ resource "azapi_resource" "AIServicesConnection" {
           ResourceId = azapi_resource.AIServices.id
         }
       }
-    })
+    }
   response_export_values = ["*"]
 }
 
