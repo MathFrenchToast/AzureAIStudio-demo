@@ -1,13 +1,5 @@
-# adapted from: https://learn.microsoft.com/en-us/azure/search/search-get-started-terraform
-resource "random_string" "azurerm_search_service_name" {
-  length  = 25
-  upper   = false
-  numeric = false
-  special = false
-}
-
 resource "azurerm_search_service" "AISearch" {
-  name                = random_string.azurerm_search_service_name.result
+  name                = "aisearch${random_string.suffix.result}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
   sku                 = var.aisearch_sku
@@ -28,7 +20,11 @@ resource "azapi_resource" "AISearchConnection" {
     properties = {
       category      = "CognitiveSearch",  # value inherited from older name of 'ai search'
       target        = "https://${azurerm_search_service.AISearch.name}.search.windows.net"
-      authType      = "AAD",
+      # authType      = "AAD",
+      authType = "ApiKey",
+      credentials = {
+           key= azurerm_search_service.AISearch.primary_key
+        },
       isSharedToAll = true,
       metadata = {
         ApiType    = "Azure",

@@ -8,7 +8,8 @@ resource "azapi_resource" "AIServices"{
   parent_id = azurerm_resource_group.rg.id
 
   identity {
-    type = "SystemAssigned"
+    # type = "SystemAssigned" # none
+    type = "None"
   }
 
   body = {
@@ -24,11 +25,17 @@ resource "azapi_resource" "AIServices"{
     sku = {
         name = var.aisrv_sku
     }
-    }
+  }
 
   response_export_values = ["*"]
 }
 
+data "azapi_resource_action" "AIServices_listKeys" {
+  type                   = "Microsoft.CognitiveServices/accounts@2023-10-01-preview"
+  resource_id            = azapi_resource.AIServices.id
+  action                 = "listKeys"
+  response_export_values = ["*"]
+}
 
 /*
 yet to come see: https://github.com/hashicorp/terraform-provider-azurerm/issues/25858
@@ -55,9 +62,13 @@ resource "azapi_resource" "AIServicesConnection" {
       properties = {
         category = "AIServices",
         target = azapi_resource.AIServices.output.properties.endpoint,
-        authType = "AAD",
+        # authType = "AAD", 
+        authType = "ApiKey",        
+        credentials = {
+           key= data.azapi_resource_action.AIServices_listKeys.output.key1 
+        },
         isSharedToAll = true,
-        metadata = {
+        metadata = {          
           ApiType = "Azure",
           ResourceId = azapi_resource.AIServices.id
         }
